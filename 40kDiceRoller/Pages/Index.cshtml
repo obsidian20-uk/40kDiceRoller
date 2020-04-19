@@ -1,0 +1,127 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section id="roll" class="grid-container_4" style="width:600px">
+    <div class="grid-item"><button>ROLL</button></div>
+    <div class="grid-item">@Model.NumHitDice</div>
+    <div class="grid-item"><button><img src="~/images/Green_Arrow_Up.png" width="50" /></button></div>
+    <div class="grid-item"><button><img src="~/images/Green_Arrow_Up.png" class="invertX" width="50" /></button></div>
+</section>
+
+<section id="hit">
+    <h1>HIT</h1>
+    <div id="hitbuttons" class="grid-container_6">
+        <div class="grid-item"><button>Auto</button></div>
+        <div class="grid-item"><button>2+</button></div>
+        <div class="grid-item"><button>3+</button></div>
+        <div class="grid-item"><button>4+</button></div>
+        <div class="grid-item"><button>5+</button></div>
+        <div class="grid-item"><button>6+</button></div>
+        <div class="grid-item">Score: @Model.HitScore</div>
+        <div class="grid-item" style="grid-column: 2 / 4"><button>Reroll Failed Dice (Special Ability)</button></div>
+    </div>
+</section>
+
+<section id="wound">
+    <div style="float:right"><a href="javascript:changewoundmode()">Switch View</a></div>
+    <h1>WOUND</h1>
+    <div id="woundbuttons" class="grid-container_6" style="border: 1px solid grey">
+        <div class="grid-item"><button>Auto</button></div>
+        <div class="grid-item"><button>2+</button></div>
+        <div class="grid-item"><button>3+</button></div>
+        <div class="grid-item"><button>4+</button></div>
+        <div class="grid-item"><button>5+</button></div>
+        <div class="grid-item"><button>6+</button></div>
+    </div>
+
+    <div id="woundbuttonsadvanced" class="grid-container_10" style="border: 1px solid grey; display:none">
+        <div class="grid-item" style="grid-column: 1 / 11; text-align:justify">Strength</div>
+        <div class="grid-item"><button>1</button></div>
+        <div class="grid-item"><button>2</button></div>
+        <div class="grid-item"><button>3</button></div>
+        <div class="grid-item"><button>4</button></div>
+        <div class="grid-item"><button>5</button></div>
+        <div class="grid-item"><button>6</button></div>
+        <div class="grid-item"><button>7</button></div>
+        <div class="grid-item"><button>8</button></div>
+        <div class="grid-item"><button>9</button></div>
+        <div class="grid-item"><button>10</button></div>
+        <div class="grid-item" style="grid-column: 1 / 11; text-align:justify">Toughness</div>
+        <div class="grid-item"><button>1</button></div>
+        <div class="grid-item"><button>2</button></div>
+        <div class="grid-item"><button>3</button></div>
+        <div class="grid-item"><button>4</button></div>
+        <div class="grid-item"><button>5</button></div>
+        <div class="grid-item"><button>6</button></div>
+        <div class="grid-item"><button>7</button></div>
+        <div class="grid-item"><button>8</button></div>
+        <div class="grid-item"><button>9</button></div>
+        <div class="grid-item"><button>10</button></div>
+    </div>
+
+    <div class="grid-container_3" style="width: 50%">
+        <div class="grid-item">Score: @Model.WoundScore</div>
+        <div class="grid-item grid-span_2"><button>Reroll Failed Dice (Special Ability)</button></div>
+    </div>
+</section>
+
+<section id="save">
+    <h1>SAVE</h1>
+    <div id="savebuttons" class="grid-container_6">
+        <div class="grid-item"><button>None</button></div>
+        <div class="grid-item"><button>2+</button></div>
+        <div class="grid-item"><button>3+</button></div>
+        <div class="grid-item"><button>4+</button></div>
+        <div class="grid-item"><button>5+</button></div>
+        <div class="grid-item"><button>6+</button></div>
+        <div class="grid-item">Score: @Model.SaveScore</div>
+    </div>
+</section>
+
+<section id="damage">
+    <h1>DAMAGE</h1>
+    <div id="damagebuttons" class="grid-container_6" style="width:700px">
+        <div class="grid-item"><button>1</button></div>
+        <div class="grid-item"><button>2</button></div>
+        <div class="grid-item"><button>3</button></div>
+        <div class="grid-item"><button>4</button></div>
+        <div class="grid-item"><button>5</button></div>
+        <div class="grid-item"><button>6</button></div>
+        <div class="grid-item"><button>d3</button></div>
+        <div class="grid-item"><button>2d3</button></div>
+        <div class="grid-item"><button>3d3</button></div>
+        <div class="grid-item"><button>d6</button></div>
+        <div class="grid-item"><button>2d6</button></div>
+    </div>
+</section>
+
+<section id="result">
+    <h1>RESULT</h1>
+    <p>Total Hits = @Model.TotalHits</p>
+    <p>Damage Breakdown</p>
+    <div id="resultslist">
+        @foreach (var result in Model.Results)
+        {
+            <p>@result.Key - @result.Value</p>
+        }
+    </div>
+    
+</section>
+
+<script>
+    function changewoundmode() {
+        var normal = document.getElementById("woundbuttons");
+        var advanced = document.getElementById("woundbuttonsadvanced");
+        if (normal.style.display === "none") {
+            advanced.style.display = "none";
+            normal.style.display = "grid";
+        }
+        else {
+           advanced.style.display = "grid";
+            normal.style.display = "none";
+        }
+    }
+</script>
