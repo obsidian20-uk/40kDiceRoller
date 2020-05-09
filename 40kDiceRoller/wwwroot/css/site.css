@@ -1,23 +1,37 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-html, body {
-    max-height: 100%;
-}
-main {
-    max-height: 100%;
-    font-size: 1vh;
-    width: 50%;
-    margin: auto;
+@media only screen and (max-height: 666px) {
+    main {
+        max-height: 666px;
+        max-width: 1024px;
+        height: 666px;
+        width: 1024px;
+    }
+
+        main section {
+            display: table-row;
+        }
 }
 
-.fancyheading {
-    /*width: 60em;
+main {
+    width: 80%;
+    margin: auto;
+    font-size: 1vh;
+    display: table;
+}
+    main section {
+        display: table-row;
+    }
+
+
+    .fancyheading {
+        /*width: 60em;
     margin: auto;
     overflow: hidden;
     line-height: 2vh;*/
-    text-align:center;
-}
+        text-align: center;
+    }
 
     /*.fancyheading h1 {
         line-height: 1vh;
